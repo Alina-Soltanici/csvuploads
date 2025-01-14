@@ -8,8 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentCsvRecords {
-    @CsvBindByName
-    private Integer id;
+//    @CsvBindByName
+//    private String raw;
     @CsvBindByName
     private String name;
     @CsvBindByName

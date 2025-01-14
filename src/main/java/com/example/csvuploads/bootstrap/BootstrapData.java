@@ -5,15 +5,14 @@ import com.example.csvuploads.model.StudentCsvRecords;
 import com.example.csvuploads.repositories.StudentRepository;
 import com.example.csvuploads.service.StudentCsvService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-
 
 @Component
 @RequiredArgsConstructor
@@ -33,8 +32,7 @@ public class BootstrapData implements CommandLineRunner {
 
         for(StudentCsvRecords record : recs) {
             studentRepository.save (Student.builder ()
-                    .id (record.getId ())
-                    .name (record.getName ())
+                    .name (StringUtils.abbreviate (record.getName (), 50))
                     .email (record.getEmail ())
                     .age (record.getAge ())
                     .build ());
