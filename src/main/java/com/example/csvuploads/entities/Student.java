@@ -1,27 +1,26 @@
 package com.example.csvuploads.entities;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
+import java.util.UUID;
 
-@Builder(builderClassName = "Builder", toBuilder = true)
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Student {
     @Id
-//    @GeneratedValue(generator = "UUID")
-//    @UuidGenerator
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
     @JdbcTypeCode (SqlTypes.CHAR)
-    private Integer id;
+    private UUID id;
 
     @NotNull
     @NotBlank
@@ -32,8 +31,5 @@ public class Student {
     @NotNull
     @NotBlank
     private String email;
-
-    @NotNull
-    @NotBlank
     private Integer age;
 }
